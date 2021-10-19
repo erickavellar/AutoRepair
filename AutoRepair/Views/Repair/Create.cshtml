@@ -1,0 +1,31 @@
+﻿@model AutoRepair.Models.RepairViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewData["Title"] = "Create";
+}
+
+<h2 class="col-md-4 offset-md-4" style="color:cornflowerblue; font-style:italic; margin-top:12%">New Repair</h2>
+<br />
+<br />
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Schedule" class="control-label"></label>
+                <select asp-for="ScheduleId" asp-items="Model.Schedules" class="form-control" style="color:black"></select>
+                <span asp-validation-for="ScheduleId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User" class="control-label"></label>
+                <select asp-for="MechanicId" asp-items="Model.Users" class="form-control" style="color:black"></select>
+                <span asp-validation-for="MechanicId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Create</button>
+                <a asp-action="Index" class="btn btn-success"><i class="fa fa-chevron-left"></i> Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+

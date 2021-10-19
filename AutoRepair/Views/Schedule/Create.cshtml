@@ -1,0 +1,137 @@
+﻿@model IEnumerable<AutoRepair.Data.Entities.ScheduleDetailTemp>
+@{
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewData["Title"] = "Create";
+}
+
+<h2 class="col-md-4 offset-md-4" style="color:cornflowerblue; font-style:italic; margin-top:12%">New Schedule</h2>
+
+
+<p>
+    <a asp-action="AddVehicleAndService" class="breadcrumb-item btn btn-success"><i class="far fa-calendar-plus"></i>  Add Vehicle and Service</a>
+    <a asp-action="ConfirmSchedule" class="btn btn-primary"><i class="fas fa-check"></i> Confirm Schedule</a>
+    <a asp-action="ScheduleView" class="btn btn-primary"><i class="fa fa-chevron-left "></i> Back to List</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Service)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vehicle.LicencePlate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Service.Description)
+                </td>
+                <td id="@item.Id">
+                    <a asp-action="DeleteItem" asp-route-id="@item.Id" class="btn btn-danger" id="btnDeleteItem"><i class="fas fa-trash-alt"></i> Delete</a>
+                    <a asp-action="Index" class="btn btn-success"><i class="fa fa-chevron-left"></i> Back to List</a>
+                </td>
+            </tr>
+}
+    </tbody>
+</table>
+
+
+
+@*//Create*@
+<div id="confirmDialog" class="modal fade">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Confirm Schedule</h4>
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-window-close"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>Do you want to confirm the schedule ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="btnYesConfirm">Yes</button>
+                <button type="button" class="btn btn-success" id="btnNoConfirm">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*//Delete*@
+<div id="deleteDialog" class="modal fade">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete</h4>
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-window-close"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>Do you want to delete vehicle and service from schedule ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="btnYesDelete">Yes</button>
+                <button type="button" class="btn btn-success" id="btnNoDelete">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts{
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+
+
+
+    <script>
+
+        $(document).ready(function () {
+            $('#schedule').DataTable();
+        });
+    </script>
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+
+            var id = 0;
+            //Create
+            $("#btnConfirm").click(function () {
+                $("#confirmDialog").modal("show");
+                return false;
+            });
+
+            $("#btnNoConfirm").click(function () {
+                $("#confirmDialog").modal("hide");
+                return false;
+            });
+
+            $("#btnYesConfirm").click(function () {
+                window.location.href = "/Schedule/ConfirmSchedule";
+            });
+            //Delete
+            $("a[id*=btnDeleteItem]").click(function () {
+                debugger;
+                id = $(this).parent()[0].id;
+                $("#deleteDialog").modal("show");
+                return false;
+            });
+
+            $("#btnNoDelete").click(function () {
+                $("#deleteDialog").modal("hide");
+                return false;
+            });
+
+            $("#btnYesDelete").click(function () {
+                window.location.href = "/Schedule/DeleteItem/" + id;
+            });
+
+        });</script>
+}

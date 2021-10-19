@@ -1,0 +1,13 @@
+﻿@{
+    string controller = Convert.ToString(Context.Request.HttpContext.Request.RouteValues["Controller"]);
+
+    if (controller == "Dashboard")
+    {
+        Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    Layout = Layout;
+}

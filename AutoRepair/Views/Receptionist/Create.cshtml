@@ -1,0 +1,117 @@
+﻿@model AutoRepair.Models.RegisterNewUserViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewData["Title"] = "Create";
+}
+
+<h3 style="margin-top:10%; color:cornflowerblue; margin-left:5%">New Receptionist</h3>
+
+<hr />
+<section class="contact-area" style="margin-left:5%; margin-bottom:15%">
+    <div class="contact-content">
+        <form asp-action="Create" method="post" enctype="multipart/form-data" onsubmit="validation()">
+            <div asp-validation-summary="ModelOnly" class="text-danger" style="text-align:center"></div>
+            <div style="height:3px;"><h6></h6></div>
+            <div class="row">
+                <div class="col-md-6 wow fadeInUp" data-wow-delay="400ms">
+
+                    <!--BANNER END-->
+                    <br />
+                    <div class="contact-form-area wow fadeInUp" data-wow-delay="500ms" style="height:850px;">
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                <img id="imgpreview" src="~/Dashboard/images/blank.jpg" alt="image" style="width:200px; height:300px; max-width:100%; height:auto" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="imageUrl" class="control-label">Image</label>
+                                <input asp-for="imageUrl" class="form-control" type="file" name="ImageFile" onchange="previewimg(event)"/>
+                                <span asp-validation-for="imageUrl" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4">
+                                <label asp-for="FirstName" class="form-label"><b>Recepcionist Number:</b></label>
+                                <label asp-for="FirstName" class="form-label">@ViewBag.idCount</label>
+                                <input asp-for="PhotoUrl" class="form-control" onchange="previewimg(event)" />
+                            </div>
+                        </div>
+
+                        <label asp-for="FirstName" class="form-label"><b>First Name:</b></label>
+                        <span asp-validation-for="FirstName" class="text-danger" style="color:black"></span>
+                        <input asp-for="FirstName" class="form-control" style="color:black" placeholder="First Name">
+
+                        <label asp-for="LastName" class="form-label"><b>Last Name:</b></label>
+                        <span asp-validation-for="LastName" class="text-danger" style="color:black"></span>
+                        <input asp-for="LastName" class="form-control" style="color:black" placeholder="Last Name">
+
+                        <label asp-for="Address" class="form-label"><b>Address:</b></label>
+                        <span asp-validation-for="Address" class="text-danger" style="color:black"></span>
+                        <input asp-for="Address" class="form-control" style="color:black" id="address" placeholder="Address">
+
+                        @*<label asp-for="DistrictId" class="control-label"><b>City:</b></label>
+                            <select asp-for="DistrictId" asp-items="Model.Districts" class="form-control"></select>
+                            <span asp-validation-for="DistrictId" class="text-danger"></span>*@
+
+
+                        <label asp-for="DistrictId" class="control-label"><b>City:</b></label>
+                        <select asp-for="DistrictId" asp-items="Model.Districts" class="form-control" style="color:black"></select>
+                        <span asp-validation-for="DistrictId" class="text-danger"></span>
+
+
+                        <label asp-for="TaxNumber" class="form-label"><b>Tax Number:</b></label>
+                        <span asp-validation-for="TaxNumber" class="text-danger" style="color:black"></span>
+                        <input asp-for="TaxNumber" class="form-control" style="color:black" placeholder="Tax Number">
+
+                        <label asp-for="PhoneNumber" class="form-label"><b>Phone Number:</b></label>
+                        <span asp-validation-for="PhoneNumber" class="text-danger" style="color:black"></span>
+                        <input asp-for="PhoneNumber" class="form-control" style="color:black" placeholder="Phone Number">
+
+                        <label asp-for="Username" class="form-label"><b>E-mail:</b></label>
+                        <span asp-validation-for="Username" class="text-danger" style="color:black"></span>
+                        <input asp-for="Username" type="email" class="form-control" style="color:black" placeholder="E-mail">
+
+                        <label asp-for="Password" class="form-label"><b>Password:</b></label>
+                        <span asp-validation-for="Password" class="text-danger" style="color:black"></span>
+                        <input asp-for="Password" type="password" class="form-control" style="color:black" placeholder="Password">
+
+                        <label asp-for="ConfirmPassword" class="form-label"><b>Confirm Password:</b></label>
+                        <span asp-validation-for="ConfirmPassword" class="text-danger" style="color:black"></span>
+                        <input asp-for="ConfirmPassword" type="password" class="form-control" style="color:black" placeholder="Confirm Password">
+                        <br />
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Create</button>
+                            <a asp-action="Index" class="btn btn-success"><i class="fa fa-chevron-left"></i> Back to List</a>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div>
+        </form>
+
+
+    </div>
+
+
+</section>
+
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+<script>
+        var previewimg = function (event) {
+        var result = document.getElementById("imgpreview");
+        result.src = URL.createObjectURL(event.target.files[0]);
+    }
+</script>
+<style>
+    .e-mask.e-filled .e-control.e-maskedtextbox {
+        height: 54px;
+    }
+
+    #datetimepicker {
+        height: 54px;
+    }
+</style>
+

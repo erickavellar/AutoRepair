@@ -1,0 +1,179 @@
+﻿@model AutoRepair.Models.RegisterNewUserViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+
+<div style="margin-top:12%">
+    <div class="container">
+
+        <form class="well form-horizontal" action=" " method="post" id="contact_form">
+            <fieldset style="color: #1b1b1b">
+
+                <!-- Form Name -->
+                <legend>
+                    <h2>
+                        <b>Registration Form</b>
+                    </h2>
+                </legend>
+                <br>
+
+                    <div class="contact-form-area wow fadeInUp" data-wow-delay="500ms" style="height:850px;">
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                <img id="imgpreview" src="~/Dashboard/images/blank.jpg" alt="image" style="width:200px; height:300px; max-width:100%; height:auto" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="imageUrl" class="control-label">Image</label>
+                            <input asp-for="imageUrl" class="form-control" type="file" name="ImageFile" onchange="previewimg(event)"/>
+                            <span asp-validation-for="imageUrl" class="text-danger"></span>
+                        </div>
+
+                        <br />
+                        <!-- Text input-->
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">First Name</label>
+                            <div class="col-md-4 inputGroupContainer">
+                                <div class="input-group">
+                                    <span asp-validation-for="FirstName" class="input-group-addon"></span>
+                                    <input asp-for="FirstName" placeholder="First Name" class="form-control" type="text">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Last Name</label>
+                            <div class="col-md-4 inputGroupContainer">
+                                <div class="input-group">
+                                    <span asp-validation-for="LastName" class="input-group-addon"></span>
+                                    <input asp-for="LastName" placeholder="Last Name" class="form-control" type="text">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Address</label>
+                            <div class="col-md-4 inputGroupContainer">
+                                <div class="input-group">
+                                    <span asp-validation-for="Address" class="input-group-addon"></span>
+                                    <input asp-for="Address" placeholder="Address" class="form-control" type="text">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">City</label>
+                            <div class="col-md-4 selectContainer">
+                                <div class="input-group">
+                                    <span asp-validation-for="DistrictId" class="input-group-addon"></span>
+                                    <select asp-for="DistrictId" asp-items="Model.Districts" class="form-control selectpicker">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Tax Number</label>
+                            <div class="col-md-4 inputGroupContainer">
+                                <div class="input-group">
+                                    <span asp-validation-for="TaxNumber" class="input-group-addon"></span>
+                                    <input asp-for="TaxNumber" placeholder="Tax Number" class="form-control" type="text">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Phone Number</label>
+                            <div class="col-md-4 inputGroupContainer">
+                                <div class="input-group">
+                                    <span asp-validation-for="PhoneNumber" class="input-group-addon"></span>
+                                    <input asp-for="PhoneNumber" placeholder="Phone Number" class="form-control" type="text">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Username</label>
+                            <div class="col-md-4 inputGroupContainer">
+                                <div class="input-group">
+                                    <span asp-validation-for="Username" class="input-group-addon"></span>
+                                    <input asp-for="Username" placeholder="Username" class="form-control" type="text">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Password</label>
+                            <div class="col-md-4 inputGroupContainer">
+                                <div class="input-group">
+                                    <span asp-validation-for="Password" class="input-group-addon"></span>
+                                    <input asp-for="Password" name="Password" placeholder="Password" class="form-control" type="password">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Confirm Password</label>
+                            <div class="col-md-4 inputGroupContainer">
+                                <div class="input-group">
+                                    <span asp-validation-for="ConfirmPassword" class="input-group-addon"></span>
+                                    <input asp-for="ConfirmPassword" name="ConfirmPassword" placeholder="Confirm Password" class="form-control" type="password">
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+
+                        <!-- Select Basic -->
+                        <!-- Success message -->
+                        <div class="alert alert-success" role="alert" style="display:none">Success!</div>
+                        <br /><br /><br />
+                        <!-- Button -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label"></label>
+                            <div class="col-md-4">
+                                <br>
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button asp-action="Register" style="background-color:#1b1b1b; color:white" type="submit" class="btn btn-warning"><i class="far fa-registered"></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSUBMIT <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+                            </div>
+                        </div>
+                    </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<script>
+    var previewimg = function (event) {
+        var result = document.getElementById("imgpreview");
+        result.src = URL.createObjectURL(event.target.files[0]);
+    }
+</script>
+
+<style>
+    .e-mask.e-filled .e-control.e-maskedtextbox {
+        height: 54px;
+    }
+
+    #datetimepicker {
+        height: 54px;
+    }
+</style>
+
+
+
+

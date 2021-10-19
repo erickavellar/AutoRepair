@@ -1,0 +1,109 @@
+﻿@model IEnumerable<AutoRepair.Data.Entities.Schedule>
+@{
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewData["Title"] = "Index";
+}
+
+<body class="hold-transition sidebar-mini">
+    Content Wrapper. Contains page content
+    Content Header (Page header)
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-6" style="margin-top:10%">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-action="Create">Create New Schedule</a></li>
+                    <li class="breadcrumb-item"><a asp-controller="Schedule" asp-action="ScheduleView">Schedule Map</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Schedule</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="schedule" class="display table table-bordered table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.User)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Vehicle)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Service)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ScheduleDateLocal)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ScheduleDateHeld)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(model => item.User.FullName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.Vehicle)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.Service)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ScheduleDateLocal)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ScheduleDateHeld)
+                                </td>
+                                <td>
+                                    <a asp-action="ScheduleHeld" asp-route-id="@item.Id" class="btn btn-info"><i class="fas fa-calendar-day"></i> Schedule</a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger" id="btnDeleteItem"><i class="fas fa-trash-alt"></i> Delete</a>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+        <!-- /.row -->
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    <!-- /.content-wrapper -->
+    <!-- ./wrapper -->
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+
+
+
+        <script>
+
+            $(document).ready(function () {
+                $('#schedule').DataTable();
+            });
+        </script>
+
+    }
+
+</body>

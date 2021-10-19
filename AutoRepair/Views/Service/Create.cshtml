@@ -1,0 +1,61 @@
+﻿@model AutoRepair.Data.Entities.Service
+
+@{
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewData["Title"] = "Create";
+}
+
+<h2 class="col-md-4 offset-md-4" style="color:cornflowerblue; font-style:italic; margin-top:12%">New Service</h2>
+<br />
+<br />
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" style="color:black" />
+                <span asp-validation-for="Description" class="text-danger" style="color:black"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreationDate" class="control-label"></label>
+                <input asp-for="CreationDate" class="form-control" style="color:black" />
+                <span asp-validation-for="CreationDate" class="text-danger" style="color:black"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpdateDate" class="control-label"></label>
+                <input asp-for="UpdateDate" class="form-control" style="color:black"/>
+                <span asp-validation-for="UpdateDate" class="text-danger" style="color:black"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeactivationDate" class="control-label"></label>
+                <input asp-for="DeactivationDate" class="form-control" style="color:black"/>
+                <span asp-validation-for="DeactivationDate" class="text-danger" style="color:black"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CostPrice" class="control-label"></label>
+                <input asp-for="CostPrice" class="form-control" style="color:black"/>
+                <span asp-validation-for="CostPrice" class="text-danger" style="color:black"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SalePrice" class="control-label"></label>
+                <input asp-for="SalePrice" class="form-control" style="color:black"/>
+                <span asp-validation-for="SalePrice" class="text-danger" style="color:black"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Create</button>
+                <a asp-action="Index" class="btn btn-success"><i class="fa fa-chevron-left"></i> Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    
+</div>
+

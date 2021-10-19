@@ -1,0 +1,50 @@
+﻿@model AutoRepair.Data.Entities.User
+@{
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewData["Title"] = "Details";
+}
+
+
+<div class="content-wrapper" style="color: cornflowerblue; font-style: italic; margin-bottom: 10%; margin-top: 10%; margin-left: 20%">
+    <h1>Customer Details</h1>
+    <hr />
+    <div>
+        <hr />
+        <dl class="dl-horizontal" style="color:white">
+            <dt>
+                @Html.DisplayNameFor(model => model.FullName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FullName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.isActive)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.isActive)
+            </dd>
+        </dl>
+    </div>
+    <div class="col-md-4">
+        <img src="@Url.Content(Model.PhotoUrl)" alt="Image" style="width:300px;height:450px;max-width:100%;height:auto;" /> 
+    </div>
+    <div>
+        <a asp-action="ChangeUser" asp-route-id="@Model.Id" class="btn btn-warning"><i class="fas fa-pencil-alt"></i> Edit</a>
+        <a asp-action="Create" asp-route-id="@Model.Id" class="btn btn-info"><i class="fa fa-save"></i> Add Counter</a>
+        <a asp-action="Index" class="btn badge-gradient-danger"><i class="fa fa-chevron-left"></i> Back to List</a>
+    </div>
+
+
+</div>
